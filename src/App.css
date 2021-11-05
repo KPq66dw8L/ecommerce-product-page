@@ -20,6 +20,10 @@ li {
   opacity: 70%;
 }
 
+li:hover{
+  opacity: 100%;
+}
+
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
