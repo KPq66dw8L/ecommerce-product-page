@@ -20,6 +20,22 @@ li {
   opacity: 70%;
 }
 
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
 .navBar {
   position: absolute;
   display: flex;
@@ -120,11 +136,22 @@ li {
 .product-qtt {
   display: flex;
   align-items: center;
-  width: 3vw;
+  width: fit-content;
+  height: 7vh;
   background-color: rgb(240, 241, 241);
-  padding: 2vh 4vw 2vh 1vw;
+  /* padding: 2vh 4vw 2vh 1vw; */
   border-radius: 5px;
   margin-right: 2vw;
+}
+
+.product-qtt img {
+  cursor: pointer;
+}
+
+.qtt-minus,
+.qtt-plus {
+  width: 4vw;
+  height: 4vh;
 }
 
 .product-qtt img:first-child {
@@ -138,8 +165,8 @@ li {
 .addToCart-button {
   color: white;
   background: url("./images/icon-cart.svg") no-repeat;
-  background-position: 60px;
+  background-position: 70px;
   background-color: rgb(255, 115, 0);
-  padding: 2vh 6vw 2vh 6vw;
+  padding: 2vh 6vw 2vh 7vw;
   border-radius: 5px;
 }

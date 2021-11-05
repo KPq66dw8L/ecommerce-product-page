@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import './App.css';
 
 const logoImg = process.env.PUBLIC_URL + '/images/logo.svg';
@@ -9,12 +10,15 @@ const minusSign = process.env.PUBLIC_URL + '/images/icon-minus.svg';
 const plusSign = process.env.PUBLIC_URL + '/images/icon-plus.svg';
 
 function App() {
+
+  const [qtt, setQtt] = useState(0);
+
   return (
     <div className="App">
 
       <div className="navBar">
         <div className="nav-1">
-          <img src={logoImg} className="logoIcn"/>
+          <img src={logoImg} className="logoIcn noselect"/>
           <ul>
             <li><a href="#">Collections</a></li>
             <li><a href="#">Men</a></li>
@@ -24,13 +28,13 @@ function App() {
           </ul>
         </div>
         <div className="nav-2">
-          <img src={cartIcn} className="cartIcn"/>
-          <img src={avatarImg} className="avatarImg"/>
+          <img src={cartIcn} className="cartIcn noselect"/>
+          <img src={avatarImg} className="avatarImg noselect"/>
         </div>
       </div>
 
       <div className="main-product-content">
-        <div className="main-images">
+        <div className="main-images noselect">
           <img src={productImg_1} className="productImg"/>
           <div className="thumbnails">
             <img src={productThb_1} className="productThb"/>
@@ -50,12 +54,20 @@ function App() {
               <h2>$125.00</h2>
               <h3 className="promo-coupon">50%</h3>
           </div> 
-            {/* <div className="break"/> */}
+            
             <h3 className="old-price">$250.00</h3>
 
           <div className="product-buy">
-            <a className="product-qtt"> <img src={minusSign} /> 0 <img src={plusSign} /> </a>
-            <a className="addToCart-button">  Add to cart</a>
+            <div className="product-qtt noselect"> 
+              <div className="qttMinus" onClick={ () => qtt ? setQtt(qtt -1) : null}>
+                <img src={minusSign} />
+              </div> 
+              {qtt}
+              <div className="qttPlus" onClick={ () => setQtt(qtt +1) }>
+                <img src={plusSign} /> 
+              </div>
+            </div>
+            <a className="addToCart-button noselect">  Add to cart</a>
           </div>
         </div>
       </div>
