@@ -67,7 +67,7 @@ nav[role=navigation] {
 
 .avatarImg {
   cursor: pointer;
-  width: 6vw;
+  width: 50px;
 }
 
 .main-product-content {
@@ -354,6 +354,15 @@ nav[role=navigation] {
 
 /* Mobile */
 @media only screen and (max-width: 700px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  .avatarImg {
+    cursor: pointer;
+    width: 6vw;
+  }
+
   .main-product-content {
     /* margin: 20vh 10vw; */
     margin: 20vh 0 0vh 0;
