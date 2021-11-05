@@ -2,8 +2,7 @@ import {useState} from 'react';
 import './App.css';
 
 const logoImg = process.env.PUBLIC_URL + '/images/logo.svg';
-const productImg_1 = process.env.PUBLIC_URL + '/images/image-product-1.jpg';
-const productThb_1 = process.env.PUBLIC_URL + '/images/image-product-1-thumbnail.jpg';
+
 const cartIcn = process.env.PUBLIC_URL + '/images/icon-cart.svg';
 const avatarImg = process.env.PUBLIC_URL + '/images/image-avatar.png';
 const minusSign = process.env.PUBLIC_URL + '/images/icon-minus.svg';
@@ -11,7 +10,40 @@ const plusSign = process.env.PUBLIC_URL + '/images/icon-plus.svg';
 
 function App() {
 
+  const thumbnails = [
+    {id: 1, src: process.env.PUBLIC_URL + '/images/image-product-1-thumbnail.jpg'},
+    {id: 2, src: process.env.PUBLIC_URL + '/images/image-product-2-thumbnail.jpg'},
+    {id: 3, src: process.env.PUBLIC_URL + '/images/image-product-3-thumbnail.jpg'},
+    {id: 4, src: process.env.PUBLIC_URL + '/images/image-product-4-thumbnail.jpg'}
+  ]
+
+  const productImages = [
+    {id: 1, src: process.env.PUBLIC_URL + '/images/image-product-1.jpg'},
+    {id: 2, src: process.env.PUBLIC_URL + '/images/image-product-2.jpg'},
+    {id: 3, src: process.env.PUBLIC_URL + '/images/image-product-3.jpg'},
+    {id: 4, src: process.env.PUBLIC_URL + '/images/image-product-4.jpg'}
+  ]
+
   const [qtt, setQtt] = useState(0);
+  const [thbActive, setThbActive] = useState(1);
+  const [productImg, setProductImg] = useState(productImages[0].src);
+
+  // const thbHandler = () => {
+    
+  //   if (thbActive == 0){
+  //     setThbActive(1);
+  //   }else {
+  //     setThbActive(0);
+  //   }
+  // }
+
+  const classActive = (thbId) => {
+    
+    if (thbId == thbActive) {
+      return "productThb-active";
+    } 
+    
+  }
 
   return (
     <div className="App">
@@ -52,9 +84,14 @@ function App() {
 
       <div className="main-product-content">
         <div className="main-images noselect">
-          <img src={productImg_1} className="productImg"/>
+          <img src={productImg} className="productImg"/>
           <div className="thumbnails">
-            <img src={productThb_1} className="productThb"/>
+            
+            {thumbnails.map(thumbnail => {
+              return (
+              <img src={thumbnail.src} className={"productThb "+ classActive(thumbnail.id)} onClick={ () => {setThbActive(thumbnail.id);setProductImg(productImages[thumbnail.id-1].src)} }/>
+              );
+            })}
           </div>
         </div>
 
