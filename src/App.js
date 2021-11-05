@@ -18,14 +18,31 @@ function App() {
 
       <div className="navBar">
         <div className="nav-1">
+          {/* Hamburger Menu  */}
+          <nav role="navigation">
+            <div id="menuToggle">
+              <input type="checkbox" />
+              <span></span>
+              <span></span>
+              <span></span>
+              <ul className="nav-text" id="menu">
+                <li className="nav-div-active"><a href="#">Collections</a></li>
+                <li><a href="#"> Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </nav>
           <img src={logoImg} className="logoIcn noselect"/>
-          <ul>
+          <ul className="desktop-nav">
             <li><a href="#">Collections</a></li>
             <li><a href="#">Men</a></li>
             <li><a href="#">Women</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
+          
         </div>
         <div className="nav-2">
           <img src={cartIcn} className="cartIcn noselect"/>
