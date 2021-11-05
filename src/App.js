@@ -26,23 +26,13 @@ function App() {
 
   const [qtt, setQtt] = useState(0);
   const [thbActive, setThbActive] = useState(1);
-  const [productImg, setProductImg] = useState(productImages[0].src);
-
-  // const thbHandler = () => {
-    
-  //   if (thbActive == 0){
-  //     setThbActive(1);
-  //   }else {
-  //     setThbActive(0);
-  //   }
-  // }
+  const [count, setCount] = useState(0);
+  const [productImg, setProductImg] = useState(productImages[count].src);
 
   const classActive = (thbId) => {
-    
     if (thbId == thbActive) {
       return "productThb-active";
-    } 
-    
+    }
   }
 
   return (
@@ -84,7 +74,11 @@ function App() {
 
       <div className="main-product-content">
         <div className="main-images noselect">
+
+          <div className="previous" onClick={ () => {if(count > 0){setCount(count-1);setProductImg(productImages[count].src)};console.log(count + " & " + productImg)} }></div>
           <img src={productImg} className="productImg"/>
+          <div className="next" onClick={ () => {if(count < 3){setCount(count+1);setProductImg(productImages[count].src)};console.log(count + " & " + productImg)} }></div>
+
           <div className="thumbnails">
             
             {thumbnails.map(thumbnail => {
