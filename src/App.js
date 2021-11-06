@@ -31,11 +31,12 @@ const products = [
 
 function App() {
 
-  const [qtt, setQtt] = useState(0);
+  const [qtt, setQtt] = useState(1);
   const [thbActive, setThbActive] = useState(1);
   const [count, setCount] = useState(0);
   const [productImg, setProductImg] = useState(products[0].productImages[count].src);
   const [cartItems, setCartItems] = useState([]);
+  const [basketVisible, setBasketVisible] = useState(0);
 
   const classActive = (thbId) => {
     if (thbId == thbActive) {
@@ -43,11 +44,11 @@ function App() {
     }
   }
 
-  const onAdd = (product) => {
+  const onAdd = (product, number) => {
     const exist = cartItems.find(x => x.id === product.id);
     if (exist){
       // if exist and is added again, increase qtt
-      setCartItems(cartItems.map(x => x.id === product.id ? {...exist, qty: exist.qty +1} : x))
+      setCartItems(cartItems.map(x => x.id === product.id ? {...exist, qty: exist.qty +number} : x))
     } else {
       setCartItems([...cartItems, {...product, qty: 1}])
     }
@@ -62,6 +63,15 @@ function App() {
       setCartItems(cartItems.map(x => x.id === product.id ? {...exist, qty: exist.qty -1} : x))
     }
   };
+
+  const onEmpty = (product) => {
+    const exist = cartItems.find(x => x.id === product.id);
+    if (exist){
+      setCartItems([])
+    } 
+  };
+
+  const product = products[0];
 
   return (
     <div className="App">
@@ -95,14 +105,18 @@ function App() {
           
         </div>
         <div className="nav-2">
-          <img src={cartIcn} className="cartIcn noselect"/>
-          <div className="basket">
-            <Basket 
-            onAdd={onAdd} 
-            onRemove={onRemove} 
+          <img src={cartIcn} className="cartIcn noselect" onClick={() => basketVisible ? setBasketVisible(0) : setBasketVisible(1)}/>
+            {basketVisible ? <Basket
+            key={product.id}
+            visible={basketVisible}
+            product={product}
+            onAdd={() => onAdd(product)} 
+            onRemove={() => onRemove(product)} 
+            onEmpty={() => onEmpty(product)}
             cartItems={cartItems}
-            />
-          </div>
+            /> : null}
+            
+          
           <img src={avatarImg} className="avatarImg noselect"/>
         </div>
       </div>
@@ -147,7 +161,7 @@ function App() {
               <div className="qttPlus" onClick={ () => setQtt(qtt +1) }>
               </div>
             </div>
-            <a className="addToCart-button noselect" onClick={onAdd}>  Add to cart</a>
+            <a className="addToCart-button noselect" onClick={() => onAdd(product, qtt)}>  Add to cart</a>
           </div>
         </div>
       </div>
