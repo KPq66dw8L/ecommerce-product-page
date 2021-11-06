@@ -8,26 +8,34 @@ const avatarImg = process.env.PUBLIC_URL + '/images/image-avatar.png';
 const minusSign = process.env.PUBLIC_URL + '/images/icon-minus.svg';
 const plusSign = process.env.PUBLIC_URL + '/images/icon-plus.svg';
 
-function App() {
-
-  const thumbnails = [
+const products = [
+  { id: 1, 
+    thumbnails: [
     {id: 1, src: process.env.PUBLIC_URL + '/images/image-product-1-thumbnail.jpg'},
     {id: 2, src: process.env.PUBLIC_URL + '/images/image-product-2-thumbnail.jpg'},
     {id: 3, src: process.env.PUBLIC_URL + '/images/image-product-3-thumbnail.jpg'},
     {id: 4, src: process.env.PUBLIC_URL + '/images/image-product-4-thumbnail.jpg'}
-  ]
-
-  const productImages = [
+  ], productImages: [
     {id: 1, src: process.env.PUBLIC_URL + '/images/image-product-1.jpg'},
     {id: 2, src: process.env.PUBLIC_URL + '/images/image-product-2.jpg'},
     {id: 3, src: process.env.PUBLIC_URL + '/images/image-product-3.jpg'},
     {id: 4, src: process.env.PUBLIC_URL + '/images/image-product-4.jpg'}
-  ]
+  ], 
+  brand: "Sneaker Company",
+  name: "Fall Limited Edition Sneakers",
+  description: "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.",
+  initPrice: 250,
+  price: 125.00,
+  discount: 50
+}
+]
+
+function App() {
 
   const [qtt, setQtt] = useState(0);
   const [thbActive, setThbActive] = useState(1);
   const [count, setCount] = useState(0);
-  const [productImg, setProductImg] = useState(productImages[count].src);
+  const [productImg, setProductImg] = useState(products[0].productImages[count].src);
 
   const classActive = (thbId) => {
     if (thbId == thbActive) {
@@ -75,35 +83,34 @@ function App() {
       <div className="main-product-content">
         <div className="main-images noselect">
 
-          <div className="previous" onClick={ () => {if(count > 0){setCount(count-1);setProductImg(productImages[count].src)};console.log(count + " & " + productImg)} }></div>
+          <div className="previous" onClick={ () => {if(count > 0){setCount(count-1);setProductImg(products[0].productImages[count].src)};console.log(count + " & " + productImg)} }></div>
           <img src={productImg} className="productImg"/>
-          <div className="next" onClick={ () => {if(count < 3){setCount(count+1);setProductImg(productImages[count].src)};console.log(count + " & " + productImg)} }></div>
+          <div className="next" onClick={ () => {if(count < 3){setCount(count+1);setProductImg(products[0].productImages[count].src)};console.log(count + " & " + productImg)} }></div>
 
           <div className="thumbnails">
             
-            {thumbnails.map(thumbnail => {
+            {products[0].thumbnails.map(thumbnail => {
               return (
-              <img src={thumbnail.src} className={"productThb "+ classActive(thumbnail.id)} onClick={ () => {setThbActive(thumbnail.id);setProductImg(productImages[thumbnail.id-1].src)} }/>
+              <img src={thumbnail.src} className={"productThb "+ classActive(thumbnail.id)} onClick={ () => {setThbActive(thumbnail.id);setProductImg(products[0].productImages[thumbnail.id-1].src)} }/>
               );
             })}
           </div>
         </div>
 
         <div className="main-description">
-          <h4 className="product-brand">Sneaker Company</h4>
+          <h4 className="product-brand">{products[0].brand}</h4>
 
-          <h1>Fall Limited Edition Sneakers</h1>
+          <h1>{products[0].name}</h1>
 
-          <p>These low-profile sneakers are your perfect casual wear companion. Featuring a
-          durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+          <p>{products[0].description}</p>
 
           <div className="prices">
             
-              <h2>$125.00</h2>
-              <h3 className="promo-coupon">50%</h3>
+              <h2>${products[0].price}.00</h2>
+              <h3 className="promo-coupon">{products[0].discount}%</h3>
           </div> 
             
-            <h3 className="old-price">$250.00</h3>
+            <h3 className="old-price">${products[0].initPrice}.00</h3>
 
           <div className="product-buy">
             <div className="product-qtt noselect"> 
