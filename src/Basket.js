@@ -1,11 +1,12 @@
 import React from 'react';
 import './Basket.css';
+import './App.css';
 
 export default function Basket(props){
     const {cartItems, onAdd, onRemove, onEmpty, product} = props;
 
     return (
-            <div className="basket">
+            <div className="basket noselect">
             {cartItems.length === 0 && <div className="basket-item-description">Your cart is empty.</div>}
             {cartItems.map((item) => (
                 <div className="basket-item" key={item.id}>

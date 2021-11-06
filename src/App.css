@@ -67,6 +67,26 @@ nav[role=navigation] {
 .cartIcn {
   cursor: pointer;
   margin-right: 4vw;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.cartIcn:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+.cartSize-notif {
+  position: absolute;
+  color: white;
+  background-color: rgb(255, 115, 0);
+  padding: 1px 5px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 10px;
+  top: 23px;
+  right: 17vw;
+  z-index: 0;
 }
 
 .avatarImg {

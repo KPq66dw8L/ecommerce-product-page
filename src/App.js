@@ -37,6 +37,7 @@ function App() {
   const [productImg, setProductImg] = useState(products[0].productImages[count].src);
   const [cartItems, setCartItems] = useState([]);
   const [basketVisible, setBasketVisible] = useState(0);
+  const [cartSize, setCartSize] = useState(cartItems.length);
 
   const classActive = (thbId) => {
     if (thbId == thbActive) {
@@ -50,8 +51,9 @@ function App() {
       // if exist and is added again, increase qtt
       setCartItems(cartItems.map(x => x.id === product.id ? {...exist, qty: exist.qty +number} : x))
     } else {
-      setCartItems([...cartItems, {...product, qty: 1}])
+      setCartItems([...cartItems, {...product, qty: number}])
     }
+    setCartSize(cartSize + number);
   };
 
   const onRemove = (product) => {
@@ -62,6 +64,7 @@ function App() {
       // if there is more than 1 qty
       setCartItems(cartItems.map(x => x.id === product.id ? {...exist, qty: exist.qty -1} : x))
     }
+    setCartSize(cartSize - 1);
   };
 
   const onEmpty = (product) => {
@@ -69,6 +72,7 @@ function App() {
     if (exist){
       setCartItems([])
     } 
+    setCartSize(0);
   };
 
   const product = products[0];
@@ -106,6 +110,7 @@ function App() {
         </div>
         <div className="nav-2">
           <img src={cartIcn} className="cartIcn noselect" onClick={() => basketVisible ? setBasketVisible(0) : setBasketVisible(1)}/>
+          {cartSize ? <p className="cartSize-notif noselect">{cartSize}</p> : null}
             {basketVisible ? <Basket
             key={product.id}
             visible={basketVisible}
