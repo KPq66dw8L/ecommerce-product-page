@@ -1,12 +1,11 @@
 import {useState} from 'react';
 import './App.css';
+import Basket from './Basket';
 
 const logoImg = process.env.PUBLIC_URL + '/images/logo.svg';
 
 const cartIcn = process.env.PUBLIC_URL + '/images/icon-cart.svg';
 const avatarImg = process.env.PUBLIC_URL + '/images/image-avatar.png';
-const minusSign = process.env.PUBLIC_URL + '/images/icon-minus.svg';
-const plusSign = process.env.PUBLIC_URL + '/images/icon-plus.svg';
 
 const products = [
   { id: 1, 
@@ -36,12 +35,33 @@ function App() {
   const [thbActive, setThbActive] = useState(1);
   const [count, setCount] = useState(0);
   const [productImg, setProductImg] = useState(products[0].productImages[count].src);
+  const [cartItems, setCartItems] = useState([]);
 
   const classActive = (thbId) => {
     if (thbId == thbActive) {
       return "productThb-active";
     }
   }
+
+  const onAdd = (product) => {
+    const exist = cartItems.find(x => x.id === product.id);
+    if (exist){
+      // if exist and is added again, increase qtt
+      setCartItems(cartItems.map(x => x.id === product.id ? {...exist, qty: exist.qty +1} : x))
+    } else {
+      setCartItems([...cartItems, {...product, qty: 1}])
+    }
+  };
+
+  const onRemove = (product) => {
+    const exist = cartItems.find(x => x.id === product.id);
+    if (exist.qty === 1){
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+    } else {
+      // if there is more than 1 qty
+      setCartItems(cartItems.map(x => x.id === product.id ? {...exist, qty: exist.qty -1} : x))
+    }
+  };
 
   return (
     <div className="App">
@@ -76,6 +96,13 @@ function App() {
         </div>
         <div className="nav-2">
           <img src={cartIcn} className="cartIcn noselect"/>
+          <div className="basket">
+            <Basket 
+            onAdd={onAdd} 
+            onRemove={onRemove} 
+            cartItems={cartItems}
+            />
+          </div>
           <img src={avatarImg} className="avatarImg noselect"/>
         </div>
       </div>
@@ -115,14 +142,12 @@ function App() {
           <div className="product-buy">
             <div className="product-qtt noselect"> 
               <div className="qttMinus" onClick={ () => qtt ? setQtt(qtt -1) : null}>
-                {/* <img src={minusSign} /> */}
               </div> 
               {qtt}
               <div className="qttPlus" onClick={ () => setQtt(qtt +1) }>
-                {/* <img src={plusSign} />  */}
               </div>
             </div>
-            <a className="addToCart-button noselect">  Add to cart</a>
+            <a className="addToCart-button noselect" onClick={onAdd}>  Add to cart</a>
           </div>
         </div>
       </div>

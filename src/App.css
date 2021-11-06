@@ -69,6 +69,13 @@ nav[role=navigation] {
   margin-right: 4vw;
 }
 
+/* .basket {
+  display: none;
+  width: 0;
+  height: 0;
+  inset: 0;
+} */
+
 .avatarImg {
   cursor: pointer;
   width: 50px;
@@ -162,7 +169,6 @@ nav[role=navigation] {
   width: fit-content;
   height: 7vh;
   background-color: rgb(240, 241, 241);
-  /* padding: 2vh 4vw 2vh 1vw; */
   border-radius: 5px;
   margin-right: 2vw;
 }
@@ -178,12 +184,6 @@ nav[role=navigation] {
   cursor: pointer;
   background-position: 1.75vw !important;
 }
-
-/* .qttMinus:hover,
-.qttPlus:hover {
-  background-color: rgb(226, 224, 224);
-  backdrop-filter: blur(100px);
-} */
 
 .qttMinus {
   background: url(./images/icon-minus.svg) no-repeat;
