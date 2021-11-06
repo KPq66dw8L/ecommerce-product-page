@@ -110,7 +110,7 @@ function App() {
         </div>
         <div className="nav-2">
           <img src={cartIcn} className="cartIcn noselect" onClick={() => basketVisible ? setBasketVisible(0) : setBasketVisible(1)}/>
-          {cartSize ? <p className="cartSize-notif noselect">{cartSize}</p> : null}
+          {cartSize ? <div className="cartSize-notif noselect">{cartSize}</div> : null}
             {basketVisible ? <Basket
             key={product.id}
             visible={basketVisible}
