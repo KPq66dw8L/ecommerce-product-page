@@ -20,7 +20,7 @@ li {
   opacity: 70%;
 }
 
-li:hover{
+li:hover {
   opacity: 100%;
 }
 
@@ -176,6 +176,7 @@ nav[role=navigation] {
   width: 4vw;
   height: 4vh;
   cursor: pointer;
+  background-position: 1.75vw !important;
 }
 
 /* .qttMinus:hover,
@@ -183,6 +184,14 @@ nav[role=navigation] {
   background-color: rgb(226, 224, 224);
   backdrop-filter: blur(100px);
 } */
+
+.qttMinus {
+  background: url(./images/icon-minus.svg) no-repeat;
+}
+
+.qttPlus {
+  background: url(./images/icon-plus.svg) no-repeat;
+}
 
 .product-qtt img:first-child {
   margin-right: 2vw;
@@ -473,6 +482,7 @@ nav[role=navigation] {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-position: 20vw !important;
   }
 
   .product-qtt {

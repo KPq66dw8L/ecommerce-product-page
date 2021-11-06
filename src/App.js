@@ -115,11 +115,11 @@ function App() {
           <div className="product-buy">
             <div className="product-qtt noselect"> 
               <div className="qttMinus" onClick={ () => qtt ? setQtt(qtt -1) : null}>
-                <img src={minusSign} />
+                {/* <img src={minusSign} /> */}
               </div> 
               {qtt}
               <div className="qttPlus" onClick={ () => setQtt(qtt +1) }>
-                <img src={plusSign} /> 
+                {/* <img src={plusSign} />  */}
               </div>
             </div>
             <a className="addToCart-button noselect">  Add to cart</a>
